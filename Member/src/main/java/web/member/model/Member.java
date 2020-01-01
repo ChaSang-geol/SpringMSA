@@ -1,7 +1,7 @@
 package web.member.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,6 +52,6 @@ public class Member {
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="id")
-	private List<MemberRole> roles;
+	private Set<MemberRole> roles;
 	
 }

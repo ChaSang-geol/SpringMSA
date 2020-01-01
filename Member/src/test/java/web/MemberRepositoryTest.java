@@ -1,6 +1,7 @@
 package web;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,7 @@ public class MemberRepositoryTest {
 	@Autowired
 	MemberRepository memberRepository;
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void insertTest() {
 		for(int i=0; i<100; i++) {
@@ -38,7 +40,7 @@ public class MemberRepositoryTest {
 			}else {
 				role.setRoleName("ADMIN");
 			}
-			member.setRoles(Arrays.asList(role));
+			member.setRoles((Set<MemberRole>) Arrays.asList(role));
 			memberRepository.save(member);
 		}
 	}

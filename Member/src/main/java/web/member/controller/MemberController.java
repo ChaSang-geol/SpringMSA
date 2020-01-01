@@ -2,6 +2,7 @@ package web.member.controller;
 //MemberController.java
 
 import java.util.Arrays;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,13 +21,14 @@ public class MemberController {
 	@Autowired
 	MemberRepository memberRepository;
 	
+	@SuppressWarnings("unchecked")
 	@PostMapping("")
 	public String create(Member member) {
 		MemberRole role = new MemberRole();
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		member.setUserPassword(passwordEncoder.encode(member.getUserPassword()));
 		role.setRoleName("BASIC");
-		member.setRoles(Arrays.asList(role));
+		member.setRoles((Set<MemberRole>) Arrays.asList(role));
 		memberRepository.save(member);
 		return "redirect:/";
 	}

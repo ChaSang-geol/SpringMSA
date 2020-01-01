@@ -23,4 +23,6 @@ public class MemberRole {
 	private Long roleNumber;
 	
 	private String roleName;
+	
+	private String description;
 }

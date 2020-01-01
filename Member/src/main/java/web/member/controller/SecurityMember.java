@@ -3,6 +3,7 @@ package web.member.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,9 +25,9 @@ public class SecurityMember extends User {
 		super(member.getUserName(), member.getUserPassword(), makeGrantedAuthority(member.getRoles()));
 	}
 	
-	private static List<GrantedAuthority> makeGrantedAuthority(List<MemberRole> roles){
+	private static List<GrantedAuthority> makeGrantedAuthority(Set<MemberRole> set){
 		List<GrantedAuthority> list = new ArrayList<>();
-		roles.forEach(role -> list.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getRoleName())));
+		set.forEach(role -> list.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getRoleName())));
 		return list;
 	}
 }
